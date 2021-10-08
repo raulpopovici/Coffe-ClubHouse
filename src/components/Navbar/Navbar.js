@@ -10,23 +10,27 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonIcon from '@mui/icons-material/Person';
 import Link from '@mui/material/Link';
 import { makeStyles } from '@mui/styles';
+import {styled} from '@mui/styles';
+import Box from '@mui/material/Box';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Badge from '@mui/material/Badge';
 
 
 
-const useStyles = makeStyles({
-    root: {
+const commonStyles ={
+    bgcolor: '#1E3547',
+    color:'#1E3547',
+    m: 1,
+    borderBottom:0,
+    borderWidth:'1.7px',
+    width:'4.3rem',
 
-        backgroundColor:'#000',
-        '&:hover':{
-            background:'#ffffff',
-            
-        },
-
+    '&:hover':{
+        color:'#fff',
     },
-});
+    
 
-
-
+};
 
 const Navbar = () => {
 
@@ -40,13 +44,12 @@ const Navbar = () => {
     const handleClose = () =>{
         setAnchorEl(null);
     }
-    const classes = useStyles();
 
     return (
 
        <>
        <AppBar style={{
-           backgroundColor:'#716151'
+           backgroundColor:'#1E3547'
            }} >
            <Toolbar style={{
                justifyContent:'space-between'
@@ -62,20 +65,55 @@ const Navbar = () => {
                     Coffe ClubHouse
                     
                 </Typography>
-                {/* <Button variant="text"style={{
-                    color:'#fff',
-                    marginRight:'40%',
-                    
-                    }}>
-                    Home
-               </Button>    */}
-               
-               <Button  className={classes.root} styles={{
-                   color:'#000'
-               }} >
-                   Home
 
-               </Button>
+
+                <Box sx={{
+                   display:'flex',
+                   ...commonStyles,
+                   justifyContent:'center',
+               }} style={{
+                    marginRight:'1%',
+                    marginTop:'12px'
+               }}>
+                
+                    <Link href='/home' underline="none" style={{
+                        color:"#fff",
+
+                    }}>
+                        HOME
+                    </Link>
+
+               </Box>
+
+
+          
+               <Box sx={{
+                   display:'flex',
+                   ...commonStyles,
+                   justifyContent:'center',
+               }} style={{
+                    marginRight:'2%',
+                    marginTop:'12px'
+                    
+
+               }}>
+                
+                    <Link href='/home' underline="none" style={{
+                        color:"#fff",
+
+                    }}>
+                        STORE
+                    </Link>
+
+               </Box>
+
+               <IconButton aria-label="cart" style={{
+                   marginRight:'2%'
+               }}>
+                    <Badge badgeContent={1} color="primary">
+                       <ShoppingCartIcon />
+                    </Badge>
+                </IconButton>
         
               <Avatar
               id="basic-avatar"
@@ -87,7 +125,8 @@ const Navbar = () => {
                   cursor:'pointer',
               }}
               sx={{
-                bgcolor: colors.green[500]
+                color:'#EAE7DE',
+                background:'#0e1c26'
               }}
               >
                   <PersonIcon/>
@@ -104,21 +143,15 @@ const Navbar = () => {
                 
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose} >
-                    <Link to='/login'  underline="none" style={{color:'#000'}}>   
+                    <Link href="/login"  underline="none" style={{color:'#000'}}>   
                         Login
                     </Link> 
                 </MenuItem>
                 <MenuItem onClick={handleClose}>Logout</MenuItem>
               </Menu>     
-
-              
-                
-
            </Toolbar>
-           
-
        </AppBar>
-       <Toolbar/>
+       
        
        
        
