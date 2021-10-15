@@ -76,7 +76,7 @@ const Navbar = () => {
                     marginTop:'12px'
                }}>
                 
-                    <Link href='/home' underline="none" style={{
+                    <Link href='/' underline="none" style={{
                         color:"#fff",
 
                     }}>

@@ -8,7 +8,7 @@ import { Toolbar } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
-
+import Footer from '../components/Footer';
 
 const commonStyles = {
     bgcolor: '#EAE7DE',
@@ -269,6 +269,8 @@ export const Home = () => {
               </Typography>
             </Toolbar>
         </AppBar>
+
+        
 
     
         
