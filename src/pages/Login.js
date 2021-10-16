@@ -4,6 +4,7 @@ import {Grid,Paper,Typography,TextField,Button,Box,Link} from '@mui/material'
 import { makeStyles } from '@mui/styles';
 import Footer from '../components/Footer';
 
+
 const useStyles = makeStyles(theme => ({
     root: {
       display: 'flex',
@@ -30,7 +31,7 @@ export const Login = () => {
 
                 <Grid container justifyContent='center'>
 
-                        <Paper elevation={10} style={{marginTop:'20%',height:'500px',width:'500px'}}>
+                        <Paper elevation={10} style={{marginTop:'13%',height:'500px',width:'500px'}}>
 
                             <Grid container justifyContent='center' direction='column' alignItems='center'>
 

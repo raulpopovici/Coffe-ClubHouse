@@ -224,51 +224,7 @@ export const Home = () => {
 
     </Box>
 
-    <AppBar position="absolute"  style={{
-
-        marginTop:'2000px',
-        backgroundColor:"#1E3547",
-        height:'400px'
-    }}>
-            <Toolbar>
-              <Typography variant="body1" color="inherit" style={{
-                  marginTop:'5%',
-                  marginLeft:'5%',
-              }}>
-                Email: www.coffeclubhouse@gmail.com
-              </Typography>
-            </Toolbar>
-
-            <Toolbar>
-              <Typography variant="body1" color="inherit" style={{
-                  marginLeft:'5%',
-              }}>
-                Phone: 0711432459
-              </Typography>
-            </Toolbar>
-
-            <FacebookIcon style={{marginLeft:'40%',}}>
-
-            </FacebookIcon>
-
-            <InstagramIcon style={{marginLeft:'50%',marginTop:'-1.18%'}}>
-
-            </InstagramIcon>
-
-            <TwitterIcon style={{marginLeft:'60%',marginTop:'-1.18%'}}>
-
-            </TwitterIcon>
-
-
-            <Toolbar>
-              <Typography variant="body1" color="inherit" style={{
-                  marginLeft:'33%',
-                  marginTop:'4%'
-              }}>
-                © COPYRIGHT 2020-2022 COFFEE CLUBHOUSE | POLICY ON PERSONAL DATA | COOKIE POLICY
-              </Typography>
-            </Toolbar>
-        </AppBar>
+    <Footer/>
 
         
 
