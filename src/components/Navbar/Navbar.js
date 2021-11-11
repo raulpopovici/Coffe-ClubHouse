@@ -34,7 +34,6 @@ const commonStyles ={
 
 const Navbar = () => {
 
-
     const [anchorEl,setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick  = (event) => {
@@ -44,6 +43,8 @@ const Navbar = () => {
     const handleClose = () =>{
         setAnchorEl(null);
     }
+
+    const handleLogout = () =>{}
 
     return (
 
@@ -98,7 +99,7 @@ const Navbar = () => {
 
                }}>
                 
-                    <Link href='/home' underline="none" style={{
+                    <Link href='/store' underline="none" style={{
                         color:"#fff",
 
                     }}>

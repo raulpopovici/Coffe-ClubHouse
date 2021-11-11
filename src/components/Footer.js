@@ -41,7 +41,7 @@ export const Footer =()=>{
                         
                     </Grid>
 
-                    <Grid container justifyContent='space-evenly' alignItems="center" style={{marginTop:'1%'}}>
+                    <Grid container justifyContent='space-evenly' alignItems="center" >
 
                         <Toolbar>
                             <Typography color="#fff" >

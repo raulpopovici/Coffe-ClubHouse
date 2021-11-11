@@ -1,6 +1,7 @@
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Register from'./pages/Register';
+import Store from './pages/Store'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from './components/Navbar/Navbar';
 
@@ -16,6 +17,7 @@ export const Routes =() => {
         <Route exact path = "/" component={Home} />
         <Route exact path = "/login" component={Login} />
         <Route exact path = "/register" component={Register} />
+        <Route exact path = "/store" component={Store} />
       </Switch>
             
     </Router>

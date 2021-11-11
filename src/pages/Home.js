@@ -1,4 +1,5 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
+import {useHistory} from 'react-router-dom'
 import {Button} from 'react'
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
@@ -9,6 +10,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import Footer from '../components/Footer';
+import axios from 'axios';
 
 const commonStyles = {
     bgcolor: '#EAE7DE',
@@ -20,6 +22,10 @@ const commonStyles = {
   };
 
 export const Home = () => {
+
+    
+    const history = useHistory();
+   
     return(
         <div style={{
             height:'2300px',
