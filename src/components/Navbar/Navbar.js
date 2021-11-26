@@ -1,7 +1,7 @@
 import React from 'react'
 //import { Link } from 'react-router-dom';
 import {colors,AppBar,Toolbar,IconButton, Typography,Button,Grid,Menu} from '@mui/material'
-import { useState } from 'react';
+import { useState, useEffect, useContext} from 'react';
 import Avatar from '@mui/material/Avatar';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -14,6 +14,8 @@ import {styled} from '@mui/styles';
 import Box from '@mui/material/Box';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
+import AuthContext from '../../context/auth';
+
 
 
 
@@ -35,6 +37,7 @@ const commonStyles ={
 const Navbar = () => {
 
     const [anchorEl,setAnchorEl] = useState(null);
+    const {user,setUser} = useContext(AuthContext);
     const open = Boolean(anchorEl);
     const handleClick  = (event) => {
         setAnchorEl(event.currentTarget);
@@ -44,7 +47,13 @@ const Navbar = () => {
         setAnchorEl(null);
     }
 
-    const handleLogout = () =>{}
+    const handleLogout = () =>{
+        setUser(null);
+        localStorage.clear();
+        setAnchorEl(null);
+    }
+
+    
 
     return (
 
@@ -107,14 +116,17 @@ const Navbar = () => {
                     </Link>
 
                </Box>
-
-               <IconButton aria-label="cart" style={{
-                   marginRight:'2%'
-               }}>
-                    <Badge badgeContent={1} color="primary">
-                       <ShoppingCartIcon />
-                    </Badge>
-                </IconButton>
+               {user && user.user_type == false &&
+                    <IconButton aria-label="cart" style={{
+                        marginRight:'2%'
+                    }}>
+                        <Badge badgeContent={1} color="primary">
+                        <ShoppingCartIcon />
+                        </Badge>
+                   </IconButton>
+               }     
+               
+               
         
               <Avatar
               id="basic-avatar"
@@ -130,7 +142,11 @@ const Navbar = () => {
                 background:'#0e1c26'
               }}
               >
-                  <PersonIcon/>
+                  {
+                    
+                    user ?  `${user.username[0]}`.toUpperCase(): <PersonIcon/>
+                  }
+                  
               </Avatar>
               <Menu
                 id="basic-menu"
@@ -148,7 +164,7 @@ const Navbar = () => {
                         Login
                     </Link> 
                 </MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>     
            </Toolbar>
        </AppBar>

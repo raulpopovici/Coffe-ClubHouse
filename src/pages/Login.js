@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect, useContext} from 'react'
 import Container from '@mui/material/Container'
 import {Grid,Paper,Typography,TextField,Button,Box,Link} from '@mui/material'
 import { makeStyles } from '@mui/styles';
@@ -9,6 +9,7 @@ import MuiAlert from '@mui/material/Alert';
 import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress';
 import { useHistory } from 'react-router-dom';
+import AuthContext from '../context/auth'
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -35,7 +36,7 @@ export const Login = () => {
     const [successopen,setsuccessOpen] = useState(false);
     const [erroropen,seterrorOpen] = useState(false);
     const [backdropOpen,setbackdropOpen] = useState(false);
-    const [user,setUser] = useState();
+    const {user,setUser} = useContext(AuthContext);
 
     useEffect(()=> {
         if(successopen == true){
@@ -52,18 +53,6 @@ export const Login = () => {
         }
     });
 
-    useEffect(() => {
-        const loggedInUser = localStorage.getItem("user");
-        if (loggedInUser) {
-          const foundUser = JSON.parse(loggedInUser);
-          setUser(foundUser);
-          console.log(foundUser.username);
-          
-        }
-        
-    },[]);
-    
-    
 
     const handleLogin = async(e) => {
         e.preventDefault();
@@ -78,8 +67,6 @@ export const Login = () => {
         }catch{
             seterrorOpen(true);
         }
-        
-       
     }
 
     const [state, setState] = React.useState({
@@ -175,7 +162,7 @@ export const Login = () => {
                 
             </Container>
 
-            <Footer/>
+            {/* <Footer/> */}
 
             
         </div>

@@ -10,7 +10,6 @@ export const StoreClient = () => {
                 Welcome to the store client page
             </Container>
             </div>
-            <Footer/>
         </div>
     );
 }

@@ -4,6 +4,7 @@ import Register from'./pages/Register';
 import Store from './pages/Store'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer';
 
 
 
@@ -19,7 +20,7 @@ export const Routes =() => {
         <Route exact path = "/register" component={Register} />
         <Route exact path = "/store" component={Store} />
       </Switch>
-            
+       <Footer/>     
     </Router>
 
     

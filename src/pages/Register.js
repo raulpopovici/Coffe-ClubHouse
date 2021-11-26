@@ -56,10 +56,6 @@ export const Register = () => {
             },1000)
             
         }
-
-
-
-        
     });
 
     const [state, setState] = React.useState({
@@ -79,9 +75,6 @@ export const Register = () => {
             if(res.data){
                     // history.push('/login');
                     setsuccessOpen(true);
-                    
-
-
                 }
         }catch{
             seterrorOpen(true);
@@ -205,7 +198,7 @@ export const Register = () => {
                 
             </Container>
 
-            <Footer/>
+            {/* <Footer/> */}
 
             
         </div>

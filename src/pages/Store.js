@@ -1,18 +1,26 @@
 import { Container } from '@mui/material';
-import { React,useState} from 'react'
+import { React,useState,useEffect,useContext} from 'react'
 import { Footer } from '../components/Footer'
 import { StoreClient} from './StoreClient'
 import { StoreAdmin} from './StoreAdmin'
+import AuthContext from '../context/auth'
+
 
 export const Store = () => {
-    const [isadmin,setIsAdmin] = useState(true);
+    const {user} = useContext(AuthContext);
+    function LoadCorrectPage(){
+        if(user){
+            if(user.user_type == true){
+                return <StoreAdmin/>
+            }
+        }
+        return <StoreClient/>
+    }
+
     return (
         <div>
-            {isadmin
-                ? <StoreAdmin/>
-                : <StoreClient/> 
-            }
-        </div>        
+           <LoadCorrectPage />
+        </div>      
     );
 }
 export default Store;
