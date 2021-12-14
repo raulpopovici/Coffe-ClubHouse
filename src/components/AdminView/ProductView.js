@@ -37,23 +37,33 @@ export const ProductView = () => {
             setPage(0);
           };
     
-          useEffect(() => {
-              axios.get('/store/products')
-              .then((res) => setProducts(res.data))
-              .catch(err => console.log(err))
-          })
+    useEffect(() => {
+        axios.get('/store/products')
+        .then((res) => setProducts(res.data))
+        .catch(err => console.log(err))
+    },[]);
+
+    const handleDeleteProduct = async (e,id) => {
+        try{
+            const res = await axios.delete('/deleteProduct',id);
+        }catch{
+            console.log("Error deleting")
+        }
+        
+    }
     
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - products.length) : 0;
 
 
     return (
+
+
        <Container style ={{height:"100%", marginBottom:'25vh'}}>
            <Grid container justifyContent="flex-end" alignContent="flex-end">
                 <Fab sx ={{bgcolor: "#1E3547", color:"#fff"}}aria-label="add" onClick={handleOpen}>
                 <AddIcon />
                 </Fab>
            </Grid>
-
            <Grid container justifyContent="center">
                  <TableContainer component = {Paper} display = "flex" style ={{flexGrow :1, marginTop:"10%", marginBottom:"30px"}}>
                       <Table sx={{ minWidth: 700}} aria-label="custom pagination table">
@@ -85,7 +95,7 @@ export const ProductView = () => {
                              {product.country_origin}
                          </TableCell>
                          <TableCell >
-                         <Button  startIcon={<DeleteIcon style={{color: '#1E3547'}}/>}>
+                         <Button  onClick = {handleDeleteProduct(product.id)} startIcon={<DeleteIcon style={{color: '#1E3547'}}/>}>
                             
                         </Button>
                          </TableCell>
