@@ -46,7 +46,7 @@ export default function BasicModal(props) {
 
             const res = await axios.post('/store',{name,price,coffee_type,country_origin,image});
             if(res.data){
-                    console.log("its oke");
+                    //console.log("its oke");
                 }
         }catch{
             console.log("not oke");

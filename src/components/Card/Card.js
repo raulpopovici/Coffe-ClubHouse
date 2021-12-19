@@ -5,6 +5,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Container, Grid } from '@mui/material';
 
 const bull = (
   <Box
@@ -15,27 +16,30 @@ const bull = (
   </Box>
 );
 
-export const MyCard = () => {
+export const MyCard = (props) => {
   return (
     <Card sx={{ minWidth: 200 }}>
       <CardContent>
+        <Container>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Word of the Day
+          The best coffee
         </Typography>
         <Typography variant="h5" component="div">
-          be{bull}nev{bull}o{bull}lent
+          {props.name}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
+          {props.price}€
         </Typography>
         <Typography variant="body2">
-          well meaning and kindly.
+          {props.type}
           <br />
           {'"a benevolent smile"'}
         </Typography>
+        </Container>
+       
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small">Add to cart</Button>
       </CardActions>
     </Card>
   );

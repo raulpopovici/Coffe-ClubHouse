@@ -24,10 +24,11 @@ export const ProductView = () => {
     const [products,setProducts] = useState([]);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [page, setPage] = React.useState(0);
+    const [isModified,setIsModified] = useState(false);
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleClose = () => {setOpen(false);setIsModified(!isModified)};
     
     const handleChangePage = (event, newPage) => {
             setPage(newPage);
@@ -35,20 +36,18 @@ export const ProductView = () => {
           const handleChangeRowsPerPage = (event) => {
             setRowsPerPage(parseInt(event.target.value, 10));
             setPage(0);
-          };
+    };
     
     useEffect(() => {
         axios.get('/store/products')
         .then((res) => setProducts(res.data))
         .catch(err => console.log(err))
-    },[]);
+    },[isModified]);
 
-    const handleDeleteProduct = async (e,id) => {
-        try{
-            const res = await axios.delete('/deleteProduct',id);
-        }catch{
-            console.log("Error deleting")
-        }
+    const handleDeleteProduct = async (id) => {
+        axios.delete(`/deleteProduct/${id}`)
+        .then((res) => setIsModified(!isModified))
+        .catch(err => console.log(err))
         
     }
     
@@ -95,7 +94,7 @@ export const ProductView = () => {
                              {product.country_origin}
                          </TableCell>
                          <TableCell >
-                         <Button  onClick = {handleDeleteProduct(product.id)} startIcon={<DeleteIcon style={{color: '#1E3547'}}/>}>
+                         <Button onClick = {() => {handleDeleteProduct(product.id)}} startIcon={<DeleteIcon style={{color: '#1E3547'}}/>}>
                             
                         </Button>
                          </TableCell>

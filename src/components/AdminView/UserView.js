@@ -28,7 +28,7 @@ export const UserView = () => {
         axios.get('/store')
         .then((res) => setUsers(res.data))
         .catch(err => console.log(err))
-    })
+    },[]);
 
     const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - users.length) : 0;

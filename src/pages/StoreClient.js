@@ -1,10 +1,10 @@
 import { Container, Grid, Paper, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react'
+import {React,useEffect,useState} from 'react'
 import { Footer } from '../components/Footer'
 import Slider from '@mui/material/Slider';
 import MyCard from '../components/Card/Card';
-
+import axios from "axios";
 
 function valuetext(value) {
     return `${value}°C`;
@@ -14,7 +14,9 @@ function valuetext(value) {
 const minDistance = 10;
 
 export const StoreClient = () => {
-    const [value1, setValue1] = React.useState([20, 37]);
+    const [value1, setValue1] = useState([0, 1000]);
+    const [products,setProducts] = useState([]);
+    const [filteredProduct,setFilteredProduct] = useState([]);
     const handleChange1 = (event, newValue, activeThumb) => {
         if (!Array.isArray(newValue)) {
           return;
@@ -25,7 +27,22 @@ export const StoreClient = () => {
         } else {
           setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
         }
+       
       };
+
+      useEffect(() => {
+        axios.get('/store/products')
+        .then((res) => setProducts(res.data))
+        .catch(err => console.log(err))
+    },[]);
+    
+
+    useEffect(() => {
+      setFilteredProduct(products.filter((product) => product.price >= value1[0] && product.price<= value1[1]));
+      console.log(value1[0]);
+      console.log(value1[1]);
+  },[value1]);
+    
     return (
         <div>
             <div style={{marginTop:'20vh'}}>
@@ -48,38 +65,12 @@ export const StoreClient = () => {
                     </Box>
                     <Container>
                     <Grid container spacing={4}>
-                      <Grid item xs={12} sm={6} md={4}>
-                        <MyCard/>
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={4}>
-                        <MyCard/>
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={4}>
-                        <MyCard/>
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={4}>
-                        <MyCard/>
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={4}>
-                        <MyCard/>
-                      </Grid><Grid item xs={12} sm={6} md={4}>
-                        <MyCard/>
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={4}>
-                        <MyCard/>
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={4}>
-                        <MyCard/>
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={4}>
-                        <MyCard/>
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={4}>
-                        <MyCard/>
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={4}>
-                        <MyCard/>
-                      </Grid>
+                      {filteredProduct.map((product) => (
+                        
+                        <Grid item xs={12} sm={6} md={4}>
+                            <MyCard name = {product.name} type={product.coffee_type} price={product.price}/>
+                        </Grid>
+                      ))}
                       
                     </Grid>
                     </Container>
