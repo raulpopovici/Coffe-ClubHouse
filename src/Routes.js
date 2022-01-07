@@ -5,6 +5,7 @@ import Store from './pages/Store'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer';
+import Cart from './pages/Cart';
 
 
 
@@ -19,6 +20,7 @@ export const Routes =() => {
         <Route exact path = "/login" component={Login} />
         <Route exact path = "/register" component={Register} />
         <Route exact path = "/store" component={Store} />
+        <Route exact path = "/cart" component={Cart}/>
       </Switch>
        <Footer/>     
     </Router>

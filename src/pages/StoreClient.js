@@ -36,20 +36,13 @@ export const StoreClient = () => {
         .catch(err => console.log(err))
     },[]);
     
-
-    useEffect(() => {
-      setFilteredProduct(products.filter((product) => product.price >= value1[0] && product.price<= value1[1]));
-      console.log(value1[0]);
-      console.log(value1[1]);
-  },[value1]);
-    
     return (
         <div>
-            <div style={{marginTop:'20vh'}}>
+            <div style={{marginTop:'20vh', marginBottom:'23%'}}>
                 <Grid display="flex">
-                    <Box display="flex" alignItems="center" justifyContent="center" direction="column" sx={{bgcolor:"#D6C9AB" ,height:"20vh", width:"50vh", marginLeft:"5vh",border:"2px solid ", borderRadius:"15px", borderColor:"#D6C9AB"}}>
+                    <Box display="flex" alignItems="center" justifyContent="center" direction="column" sx={{bgcolor:"#1E3547" ,height:"15vh", width:"50vh", marginLeft:"5vh",border:"2px solid ", borderRadius:"15px", borderColor:"#1E3547"}}>
                     <Container display="flex" alignItems="center" direction="column">
-                        <Typography style={{fontSize:"20px"}}>Filter by price</Typography>
+                        <Typography style={{fontSize:"20px", color:"#fff"}}>Filter by price</Typography>
                         <Slider
                             getAriaLabel={() => 'Minimum distance'}
                             value={value1}
@@ -60,15 +53,15 @@ export const StoreClient = () => {
                             max={1000}
                             min={0}
                         />
-                        <Typography>Price: {value1[0]} - {value1[1]} €</Typography>
+                        <Typography style={{color:"#fff"}}>Price: {value1[0]} - {value1[1]} €</Typography>
                     </Container>
                     </Box>
                     <Container>
                     <Grid container spacing={4}>
-                      {filteredProduct.map((product) => (
+                      {products.filter((product) => product.price >= value1[0] && product.price<= value1[1]).map((product) => (
                         
                         <Grid item xs={12} sm={6} md={4}>
-                            <MyCard name = {product.name} type={product.coffee_type} price={product.price}/>
+                            <MyCard id={product.product_id} name = {product.name} type={product.coffee_type} price={product.price} country_origin={product.country_origin}/>
                         </Grid>
                       ))}
                       

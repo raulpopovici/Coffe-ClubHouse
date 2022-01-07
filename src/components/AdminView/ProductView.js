@@ -94,7 +94,7 @@ export const ProductView = () => {
                              {product.country_origin}
                          </TableCell>
                          <TableCell >
-                         <Button onClick = {() => {handleDeleteProduct(product.id)}} startIcon={<DeleteIcon style={{color: '#1E3547'}}/>}>
+                         <Button onClick = {() => {handleDeleteProduct(product.product_id)}} startIcon={<DeleteIcon style={{color: '#1E3547'}}/>}>
                             
                         </Button>
                          </TableCell>

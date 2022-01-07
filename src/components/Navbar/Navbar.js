@@ -117,13 +117,19 @@ const Navbar = () => {
 
                </Box>
                {user && user.user_type == false &&
-                    <IconButton aria-label="cart" style={{
+                    <Link href='/cart' style={{
                         marginRight:'2%'
                     }}>
-                        <Badge badgeContent={1} color="primary">
-                        <ShoppingCartIcon />
+                    <IconButton aria-label="cart" >
+                        <Badge color="primary">
+                       
+                            <ShoppingCartIcon />
+                        
+                        
                         </Badge>
+                        
                    </IconButton>
+                   </Link>   
                }     
                
                
