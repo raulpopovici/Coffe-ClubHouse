@@ -38,7 +38,8 @@ export default function BasicModal(props) {
     const [price,setPrice] = useState(0);
     const [coffee_type,setCoffeeType] = useState("");
     const [country_origin,setCountryOrigin] = useState("");
-    const image = "image";
+    const [image,setImage] = useState("");
+    //const image = "image";
 
     const handleAddProduct = async(e) => {
         e.preventDefault();
@@ -111,15 +112,22 @@ export default function BasicModal(props) {
             value={country_origin}
             onChange={(e) => setCountryOrigin(e.target.value)}                           
          />
+
+          <Typography id="modal-modal-title" color="#fff" component="h2">
+            Image:
+          </Typography>  
+          <TextField 
+            sx={styleTextField}
+            id="outlined-basic"
+            variant="outlined"
+            required
+            value={image}
+            onChange={(e) => setImage(e.target.value)}                           
+         />
           </form>
 
         <Grid display= "flex" direction="column" alignItems="center" marginTop="20px">
-        <label htmlFor="icon-button-file">
-        {/* <Input accept="image/*" id="icon-button-file" type="file" /> */}
-        <IconButton color="primary" aria-label="upload picture" component="span">
-          <PhotoCamera />
-        </IconButton>
-      </label>
+        
 
             <Button variant="contained"  onClick={handleAddProduct} style={{backgroundColor:'#EAE7DE',width:'150px',height:'50px', marginTop:"20px",color:"#000"}}>
                   Add Product

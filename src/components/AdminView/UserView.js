@@ -35,7 +35,7 @@ export const UserView = () => {
 
 
     return (
-        <Container style ={{height:"100%"}}>
+        <Container style ={{height:"100%",marginBottom:'20%'}}>
            <Grid container justifyContent="center">
                     <TableContainer component = {Paper} display = "flex" style ={{flexGrow :1, marginTop:"10%", marginBottom:"30px"}}>
                         <Table sx={{ minWidth: 700}} aria-label="custom pagination table">

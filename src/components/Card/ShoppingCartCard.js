@@ -9,6 +9,7 @@ import { Container, Grid } from '@mui/material';
 import CardMedia from '@mui/material/CardMedia';
 import AuthContext from '../../context/auth';
 import axios from 'axios';
+import CloseSharpIcon from '@mui/icons-material/CloseSharp';
 import Chip from '@mui/material/Chip';
 import EuroIcon from '@mui/icons-material/Euro';
 import CoffeeIcon from '@mui/icons-material/Coffee';
@@ -22,35 +23,29 @@ const bull = (
   </Box>
 );
 
-export const MyCard = (props) => {
-  const {user,setUser} = useContext(AuthContext);
+export const ShoppingCartCard = (props) => {
 
-  const addToCart = async (e) =>{
-    e.preventDefault();
 
-    try{
+  const [isModified,setIsModified] = useState(false);
 
-        if(user != null){
-          const fk_user_id = user.user_id;
-          const fk_product_id = props.id;
-          console.log(fk_user_id);
-          console.log(fk_product_id);
-          const res = await axios.post('/shoppingCart',{fk_user_id,fk_product_id});
-          
-        }
-        
-        
-    }catch{
-      console.log("error adding to cart");
-    }
-  }
+  const handleDeleteProduct = async (id) => {
+    axios.delete(`/deleteCartProduct/${id}`)
+    .then((res) => setIsModified(!isModified))
+    .catch(err => console.log(err)) 
+}
+
+  
+
   return (
-    <Card sx={{ minWidth: 200}}>
+    <Card sx={{ minWidth: 100}}>
       <CardMedia
         component="img"
         height="200"
         image={props.image}
-      />
+      >
+
+        {/* <Button>delete</Button> */}
+      </CardMedia>
       <CardContent>
         <Grid container display="flex" justifyContent="center" flexDirection="column" alignItems="center">
           <Typography variant="h5" component="div">
@@ -59,15 +54,12 @@ export const MyCard = (props) => {
           <Chip icon={<EuroIcon />} label={props.price} variant="outlined" sx={{marginTop:"5px",marginBottom:"5px"}}/>
           <Chip icon={<CoffeeIcon/>} label= {props.type} variant="outlined" sx={{marginTop:"5px",marginBottom:"5px"}}/>
           <Chip icon={<LocationOnIcon/>} label= {props.country_origin} variant="outlined" sx={{marginTop:"5px",marginBottom:"5px"}}/>
+          <Button onClick = {() => {handleDeleteProduct(props.id);props.onClick()}} sx={{diplay:"flex",alignSelf:"flex-end"}}><CloseSharpIcon sx={{color:"#000"}}/></Button>
         </Grid>
        
       </CardContent>
-      {
-        user ? <CardActions ><Grid container display="flex" justifyContent="center"><Button onClick={addToCart} size="small" sx={{border:"1px solid",borderRadius:"15px", borderColor:"#616161",color:"#000"}}>Add to cart</Button></Grid></CardActions> : null
-      }
-     
     </Card>
   );
 }
 
-export default MyCard;
+export default ShoppingCartCard;

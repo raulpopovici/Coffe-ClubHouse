@@ -164,7 +164,6 @@ const Navbar = () => {
                 }}
               >   
                 
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose} >
                     <Link href="/login"  underline="none" style={{color:'#000'}}>   
                         Login

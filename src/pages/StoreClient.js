@@ -14,7 +14,7 @@ function valuetext(value) {
 const minDistance = 10;
 
 export const StoreClient = () => {
-    const [value1, setValue1] = useState([0, 1000]);
+    const [value1, setValue1] = useState([0, 3000]);
     const [products,setProducts] = useState([]);
     const [filteredProduct,setFilteredProduct] = useState([]);
     const handleChange1 = (event, newValue, activeThumb) => {
@@ -61,7 +61,7 @@ export const StoreClient = () => {
                       {products.filter((product) => product.price >= value1[0] && product.price<= value1[1]).map((product) => (
                         
                         <Grid item xs={12} sm={6} md={4}>
-                            <MyCard id={product.product_id} name = {product.name} type={product.coffee_type} price={product.price} country_origin={product.country_origin}/>
+                            <MyCard id={product.id} name = {product.name} type={product.coffee_type} price={product.price} country_origin={product.country_origin} image={product.image}/>
                         </Grid>
                       ))}
                       
